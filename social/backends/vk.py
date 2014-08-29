@@ -9,7 +9,7 @@ from hashlib import md5
 from social.utils import parse_qs
 from social.backends.base import BaseAuth
 from social.backends.oauth import BaseOAuth2
-from social.exceptions import AuthTokenRevoked, AuthException
+from social.exceptions import AuthTokenRevoked, AuthException, AuthCaptchaNeeded
 
 
 class VKontakteOpenAPI(BaseAuth):
@@ -114,6 +114,9 @@ class VKOAuth2(BaseOAuth2):
             msg = error.get('error_msg', 'Unknown error')
             if error.get('error_code') == 5:
                 raise AuthTokenRevoked(self, msg)
+            elif error.get('error_code') == 14:
+                sid, img = error.get('captcha_sid'), error.get('captcha_img')
+                raise AuthCaptchaNeeded(self, sid, img)
             else:
                 raise AuthException(self, msg)
 

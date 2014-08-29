@@ -98,6 +98,15 @@ class AuthForbidden(AuthException):
         return 'Your credentials aren\'t allowed'
 
 
+class AuthCaptchaNeeded(AuthException):
+    def __init__(self, backend, sid, img, *args, **kwargs):
+        self.sid = sid
+        self.img = img
+        super(AuthCaptchaNeeded, self).__init__(backend, *args, **kwargs)
+
+    def __str__(self):
+        return 'Captcha needed ({0}, {1})'.format(self.sid, self.img)
+
 class InvalidEmail(AuthException):
     def __str__(self):
         return 'Email couldn\'t be validated'
