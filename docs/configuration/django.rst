@@ -36,6 +36,12 @@ Also ensure to define the MongoEngine_ storage setting::
 Database
 --------
 
+(For Django 1.7 and higher) sync database to create needed models::
+
+    ./manage.py makemigrations
+
+
+
 Sync database to create needed models::
 
     ./manage.py syncdb
@@ -75,6 +81,10 @@ Add URLs entries::
         url('', include('social.apps.django_app.urls', namespace='social'))
         ...
     )
+
+In case you need a custom namespace, this setting is also needed::
+
+    SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 
 Template Context Processors

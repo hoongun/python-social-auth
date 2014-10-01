@@ -157,6 +157,7 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.mailru.MailruOAuth2',
     'social.backends.mendeley.MendeleyOAuth',
     'social.backends.mendeley.MendeleyOAuth2',
+    'social.backends.mineid.MineIDOAuth2',
     'social.backends.mixcloud.MixcloudOAuth2',
     'social.backends.odnoklassniki.OdnoklassnikiOAuth2',
     'social.backends.open_id.OpenIdAuth',
@@ -226,10 +227,13 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.mail.mail_validation',
     'social.pipeline.user.create_user',
     'social.pipeline.social_auth.associate_user',
+    'social.pipeline.debug.debug',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
     #'social.pipeline.debug.debug'
 )
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['first_name', 'last_name', 'email',
 #                                         'username']

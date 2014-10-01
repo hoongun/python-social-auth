@@ -77,6 +77,7 @@ or current ones extended):
     * Google_ OAuth1, OAuth2 and OpenId
     * Instagram_ OAuth2
     * Jawbone_ OAuth2 https://jawbone.com/up/developer/authentication
+    * Kakao_ OAuth2 https://developer.kakao.com
     * Linkedin_ OAuth1
     * Live_ OAuth2
     * Livejournal_ OpenId
@@ -187,6 +188,19 @@ Or::
 
     $ cd python-social-auth
     $ sudo python setup.py install
+
+    
+Upgrading
+---------
+
+Django with South
+~~~~~~~~~~~~~~~~~
+
+Upgrading from 0.1 to 0.2 is likely to cause problems trying to apply a migration when the tables 
+already exist. In this case a fake migration needs to be applied::
+
+    $ python manage.py migrate --fake default
+
 
 Support
 ---------------------
